@@ -25,7 +25,30 @@ router
   });
 
 // get one product
-router.get("/:id", (req, res) => {});
+router.get("/:id", (req, res) => {
+  Product.findOne({
+    where: {
+      id: req.params.id,
+    },
+    params: ["id", "product_name", "price", "stock"],
+    include: [
+      {
+        model: Category,
+        params: ["id", "category_name"],
+      },
+      {
+        model: Tag,
+        params: ["id", "tag_name"],
+      },
+    ],
+  }).then((productData) => {
+    if (!productData) {
+      res.status(404).json({ message: "No Product found with this id! " });
+      return;
+    }
+    res.json(productData);
+  });
+});
 
 // create new product
 router.post("/", (req, res) => {
