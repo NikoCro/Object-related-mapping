@@ -5,28 +5,27 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 
 // get all products
 
-router
-  .get("/", (req, res) => {
-    Product.findAll({
-      params: ["id", "product_name", "price", "stock"],
-      include: [
-        {
-          model: Category,
-          params: ["id", "category_name"],
-        },
-        {
-          model: Tag,
-          params: ["id", "tag_name"],
-        },
-      ],
+router.get("/", (req, res) => {
+  Product.findAll({
+    params: ["id", "product_name", "price", "stock"],
+    include: [
+      {
+        model: Category,
+        params: ["id", "category_name"],
+      },
+      {
+        model: Tag,
+        params: ["id", "tag_name"],
+      },
+    ],
+  })
+    .then((productData) => {
+      res.json(productData);
+    })
+    .catch((err) => {
+      res.json(err);
     });
-  })
-  .then((productData) => {
-    res.json(productData);
-  })
-  .catch((err) => {
-    res.json(err);
-  });
+});
 
 // get one product
 router.get("/:id", (req, res) => {
