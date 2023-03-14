@@ -4,10 +4,11 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 // The `/api/products` endpoint
 
 // get all products
+
 router
   .get("/", (req, res) => {
     Product.findAll({
-      attributes: ["id", "product_name", "price", "stock"],
+      params: ["id", "product_name", "price", "stock"],
       include: [
         {
           model: Category,
@@ -53,6 +54,7 @@ router.get("/:id", (req, res) => {
       res.json(productData);
     })
     .catch((err) => {
+      console.log(err);
       res.json(err);
     });
 });
@@ -146,6 +148,7 @@ router.delete("/:id", (req, res) => {
       res.json(Data);
     })
     .catch((err) => {
+      console.log(err);
       res.json(err);
     });
 });
