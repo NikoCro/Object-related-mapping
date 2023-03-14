@@ -61,13 +61,31 @@ router.post("/", (req, res) => {
       res.json(err);
     });
 });
-
+// update a category by its `id` value
 router.put("/:id", (req, res) => {
-  // update a category by its `id` value
+  Category.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((Data) => res.json(Data))
+    .catch((err) => {
+      console.log(err);
+      res.json(err);
+    });
 });
-
+// delete a category by its `id` value
 router.delete("/:id", (req, res) => {
-  // delete a category by its `id` value
+  Category.destroy(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((Data) => res.json(Data))
+    .catch((err) => {
+      console.log(err);
+      res.json(err);
+    });
 });
 
 module.exports = router;
