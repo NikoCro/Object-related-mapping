@@ -28,3 +28,7 @@ We had to execute association methods on Sequelize models to create the followin
 ## EXTRA
 
 In Insomnia on the left side, i created short cuts for GET, POST, PUT and DELETE routes for each model so it would be easier to execute them wthout repeating the commands over and over. 
+
+
+
+<img width="1440" alt="Screenshot 2023-03-16 at 9 53 47 AM" src="https://user-images.githubusercontent.com/118748686/225638955-53c37df6-690e-40d8-9b94-494c46cf01a0.png">
